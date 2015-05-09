@@ -26,3 +26,16 @@ def create_md5(path):
             m.update(data)
 
     return m.hexdigest()
+
+def create_sha512(path):
+    """Create sha512 hash of a file using the hashlib library"""
+    sha512 = hashlib.sha512()
+    # rb necessary to run correctly in windows.
+    with open(path, "rb") as f:
+        while True:
+            data = f.read(8192)
+            if not data:
+                break
+            sha512.update(data)
+
+    return sha512.hexdigest()
